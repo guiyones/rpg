@@ -1,0 +1,49 @@
+syntax = "proto3";
+package proto;
+option go_package = "weapon/internal/proto";
+
+service WeaponService {
+    rpc CreateWeapon (CreateRequest) returns (CreateResponse){}
+    rpc ListWeapons(GetListRequest) returns (GetListResponse){}
+    rpc GetWeapon(GetRequest) returns (Weapon){}
+    rpc GetWeaponByCategory(GetByCategoryRequest) returns (GetListResponse){}
+}
+
+message CreateRequest {
+    string name = 1;
+    string distance = 2;
+    string category = 3;
+    string weaponRange = 4;
+    string hand = 5;
+    int32 damage = 6;
+    int32 defense = 7;
+}
+
+message CreateResponse {
+    Weapon weapon = 1; 
+}
+
+message Weapon {
+    int32 id = 1;
+    string name = 2;
+    string distance = 3;
+    string category = 4;
+    string weaponRange = 5;
+    string hand = 6;
+    int32 damage = 7;
+    int32 defense = 8;
+}
+
+message GetListResponse {
+    repeated Weapon weapons = 1;
+}
+
+message GetListRequest {}
+
+message GetRequest {
+    int32 id = 1;
+}
+
+message GetByCategoryRequest{
+    string category = 1;
+}

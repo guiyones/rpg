@@ -1,0 +1,44 @@
+syntax = "proto3";
+package proto;
+option go_package = "armor/internal/proto";
+
+service ArmorService {
+    rpc CreateArmor(CreateRequest) returns (CreateResponse);
+    rpc ListArmors(GetListRequest) returns (GetListResponse);
+    rpc GetByCategory(GetByCategoryRequest) returns (GetListResponse);
+}
+
+message CreateRequest {
+    string name = 1;
+    string category = 2;
+    int32 defense = 3;
+}
+
+message CreateResponse {
+  Armor armor = 1;
+}
+
+message Armor {
+    int32 id = 1;
+    string name = 2;
+    string category = 3;
+    int32 defense = 4;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+    Armor armor = 1;
+}
+
+message GetListRequest {}
+
+message GetListResponse {
+    repeated Armor armors = 1;
+}
+
+message GetByCategoryRequest{
+    string category = 1;
+}
