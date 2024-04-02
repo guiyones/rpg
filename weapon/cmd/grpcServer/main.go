@@ -2,7 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"net"
+	"os"
 	"weapon/internal/database"
 	"weapon/internal/proto"
 	"weapon/internal/service"
@@ -15,9 +17,12 @@ import (
 
 func main() {
 
-	db, err := sql.Open("sqlite3", "./weapons.sqlite")
+	url := "libsql://weapon-guinoyo.turso.io?authToken=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MTIwMTc2OTcsImlkIjoiOTY2YmEwZmQtYTA1YS00OWEyLWFmNzAtYzkyZTIwMjRmODVlIn0.wbOeSc0WLdkJECixRax8J62vOqwnNRWi2ek1eHcOuWoHLrkG4-Tz5FT2XjKgKN_sIbePmY1_tXBJ3BASGqeFBw"
+
+	db, err := sql.Open("libsql", url)
 	if err != nil {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "failed to open db %s: %s", url, err)
+		os.Exit(1)
 	}
 	defer db.Close()
 

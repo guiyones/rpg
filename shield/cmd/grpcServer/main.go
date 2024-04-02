@@ -2,7 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"net"
+	"os"
 	"shield/internal/database"
 	"shield/internal/proto"
 	"shield/internal/service"
@@ -15,9 +17,12 @@ import (
 
 func main() {
 
-	db, err := sql.Open("sqlite3", "./shield.sqlite")
+	url := "libsql://shield-guinoyo.turso.io?authToken=eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MTIwMTc2NTQsImlkIjoiMjM1YzRlNjMtMzkyNC00NDBiLWFjNmItNWY0NjAzZjEyYTI1In0.L2gN7z5e_tJ93G8hcyADF8yXUzkeH9yXD2MSPJaF3sefTULE86SzO_F5cTk72Ew_bUDpLImTCbws1JXfOiDPDQ"
+
+	db, err := sql.Open("libsql", url)
 	if err != nil {
-		panic(err)
+		fmt.Fprintf(os.Stderr, "failed to open db %s: %s", url, err)
+		os.Exit(1)
 	}
 	defer db.Close()
 
