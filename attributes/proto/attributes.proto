@@ -1,0 +1,29 @@
+syntax = "proto3";
+package proto;
+option go_package = "attributes/internal/proto";
+
+service AttributesService {
+    rpc CreateAttribute(CreateAttributeRequest) returns (Attribute);
+    rpc ListAttributes(GetListRequest) returns (GetListResponse);
+}
+
+message CreateAttributeRequest {
+    string name = 1;
+    string attribute_type = 2;
+    string description = 3;
+    int32 value = 4;
+}
+
+message Attribute {
+    int32 id = 1; 
+    string name = 2;
+    string attribute_type = 3;
+    string description = 4;
+    int32 value = 5;
+}
+
+message GetListRequest {}
+
+message GetListResponse {
+    repeated Attribute attributes = 1;
+}
