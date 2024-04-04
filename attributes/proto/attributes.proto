@@ -5,6 +5,7 @@ option go_package = "attributes/internal/proto";
 service AttributesService {
     rpc CreateAttribute(CreateAttributeRequest) returns (Attribute);
     rpc ListAttributes(GetListRequest) returns (GetListResponse);
+    rpc GetByAttributeType(GetByAttributeTypeRequest) returns (GetListResponse);
 }
 
 message CreateAttributeRequest {
@@ -26,4 +27,8 @@ message GetListRequest {}
 
 message GetListResponse {
     repeated Attribute attributes = 1;
+}
+
+message GetByAttributeTypeRequest {
+    string attribute_type = 1;
 }

@@ -5,10 +5,10 @@ import "database/sql"
 type Attributes struct {
 	db            *sql.DB
 	ID            int32
-	name          string
-	attributeType string
-	description   string
-	value         int32
+	Name          string
+	AttributeType string
+	Description   string
+	Value         int32
 }
 
 func NewAttributes(db *sql.DB) *Attributes {
@@ -25,10 +25,10 @@ func (a *Attributes) CreateAttibutes(name string, attributeType string, descript
 	}
 
 	return Attributes{
-		name:          name,
-		attributeType: attributeType,
-		description:   description,
-		value:         value,
+		Name:          name,
+		AttributeType: attributeType,
+		Description:   description,
+		Value:         value,
 	}, nil
 
 }
@@ -52,10 +52,10 @@ func (a *Attributes) GetAllAtributes() ([]Attributes, error) {
 
 		attributes = append(attributes, Attributes{
 			ID:            id,
-			name:          name,
-			attributeType: attributeType,
-			description:   description,
-			value:         value,
+			Name:          name,
+			AttributeType: attributeType,
+			Description:   description,
+			Value:         value,
 		})
 	}
 
@@ -81,10 +81,10 @@ func (a *Attributes) GetByAttributeType(attributeType string) ([]Attributes, err
 
 		attributes = append(attributes, Attributes{
 			ID:            id,
-			name:          name,
-			attributeType: attributeType,
-			description:   description,
-			value:         value,
+			Name:          name,
+			AttributeType: attributeType,
+			Description:   description,
+			Value:         value,
 		})
 	}
 
